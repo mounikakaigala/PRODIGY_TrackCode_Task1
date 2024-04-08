@@ -1,0 +1,54 @@
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+def celsius_to_kelvin(celsius):
+    return celsius + 273.15
+
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5/9
+
+def fahrenheit_to_kelvin(fahrenheit):
+    return (fahrenheit - 32) * 5/9 + 273.15
+
+def kelvin_to_celsius(kelvin):
+    return kelvin - 273.15
+
+def kelvin_to_fahrenheit(kelvin):
+    return (kelvin - 273.15) * 9/5 + 32
+
+def convert_temperature(temperature, from_unit, to_units):
+    if from_unit == "C":
+        celsius = temperature
+        fahrenheit = celsius_to_fahrenheit(celsius)
+        kelvin = celsius_to_kelvin(celsius)
+    elif from_unit == "F":
+        fahrenheit = temperature
+        celsius = fahrenheit_to_celsius(fahrenheit)
+        kelvin = fahrenheit_to_kelvin(fahrenheit)
+    elif from_unit == "K":
+        kelvin = temperature
+        celsius = kelvin_to_celsius(kelvin)
+        fahrenheit = kelvin_to_fahrenheit(kelvin)
+    else:
+        print("Invalid input unit")
+        return
+    
+    converted_temperatures = {
+        "C": celsius,
+        "F": fahrenheit,
+        "K": kelvin
+    }
+    
+    for unit in to_units:
+        if unit in converted_temperatures:
+            print(f"{converted_temperatures[unit]:.2f} {unit}")
+
+def main():
+    temperature = float(input("Enter the temperature value: "))
+    from_unit = input("Enter the original unit of measurement (C/F/K): ").upper()
+    to_units = input("Enter the units you want to convert to (C/F/K, separated by space): ").upper().split()
+    
+    convert_temperature(temperature, from_unit, to_units)
+
+if __name__ == "__main__":
+    main()
